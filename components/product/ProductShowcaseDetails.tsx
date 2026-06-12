@@ -41,18 +41,18 @@ export function ProductShowcaseDetails({
 
       {/* badges */}
       <div className="ps-badges">
-        <span className="ps-badge-pill">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg> พรางหุ่น
+        <span className="ps-badge-pill" data-tooltip="ตัดเย็บประณีต ทรงสวยสไตล์สปอร์ต">
+          เสื้อโปโลคุณภาพสูง
         </span>
-        <span className="ps-badge-pill">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg> เบา ไม่แนบเนื้อ
+        <span className="ps-badge-pill" data-tooltip="ผ้านุ่ม เบาสบาย ระบายอากาศดีเยี่ยม">
+          ผ้า Polyester
         </span>
-        <span className="ps-badge-pill">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg> ระบายอากาศดี
-        </span>
+        {hasDiscount && (
+          <span className="ps-badge-pill" data-tooltip="ราคาสุดพิเศษประหยัดสูงสุด">
+            🔥 Best Value
+          </span>
+        )}
       </div>
-
-      <div className="ps-divider" />
 
       {/* price */}
       <div className="ps-price-block">
@@ -92,26 +92,14 @@ export function ProductShowcaseDetails({
           </button>
         </div>
 
-        <div className="ps-mobile-size-label">เลือกไซส์ของคุณ</div>
-        
         {/* size selector button */}
         <button
           className="ps-size-btn"
           onClick={() => setIsSizeGuideOpen(true)}
         >
-          <span>เลือกไซส์ {selectedSize}</span>
-          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ opacity: 0.9 }}>
+          <span>Size {selectedSize}</span>
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ opacity: 0.9 }}>
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-
-        <button className="ps-fabric-btn" onClick={() => setIsSizeGuideOpen(true)}>
-          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          รายละเอียดเนื้อผ้า
-          <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </button>
 

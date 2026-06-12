@@ -615,21 +615,42 @@ export function ProductShowcaseStyles() {
       }
 
       @media (max-width: 480px) {
+        .ps-title, .ps-desc {
+          text-align: center;
+        }
+        .ps-tag, .ps-badges {
+          justify-content: center;
+        }
+        .ps-tag {
+          display: flex;
+        }
+        .ps-price-block {
+          text-align: center;
+        }
+        .ps-price-row {
+          justify-content: center;
+        }
         .ps-actions {
           flex-direction: column;
-          align-items: stretch;
+          align-items: center;
           width: 100%;
+          gap: 1rem;
         }
         .ps-qty {
           justify-content: space-between;
           width: 100%;
+          max-width: 320px;
+        }
+        .ps-size-btn {
+          width: 100%;
+          max-width: 320px;
         }
         .ps-buy {
           width: 100%;
+          max-width: 320px;
           min-height: 48px;
           flex-shrink: 0;
           font-size: 1rem;
-          margin-top: 0.5rem;
         }
         .ps-left-bottom {
           flex-direction: column;
@@ -850,6 +871,12 @@ export function ProductShowcaseStyles() {
       .dark .ps-footer-total strong { color: #fff; }
       @media (max-width: 900px) {
         .dark .ps-right::before { border-top-color: rgba(255,255,255,0.12); border-left: none; border-right: none; border-bottom: none; }
+        .dark .ps-mobile-size-label {
+          color: rgba(255,255,255,0.9);
+        }
+        .dark .ps-fabric-btn {
+          color: rgba(255,255,255,0.8);
+        }
       }
     `}</style>
   );
