@@ -13,6 +13,8 @@ type ProductShowcaseHeaderProps = {
   cartItems: CartItem[];
   setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
   cartPopping: boolean;
+  isLoginOpen: boolean;
+  setIsLoginOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export function ProductShowcaseHeader({
@@ -22,9 +24,10 @@ export function ProductShowcaseHeader({
   cartItems,
   setCartItems,
   cartPopping,
+  isLoginOpen,
+  setIsLoginOpen,
 }: ProductShowcaseHeaderProps) {
   const { data: session } = useSession();
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isProfileMenuClosing, setIsProfileMenuClosing] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -67,8 +70,8 @@ export function ProductShowcaseHeader({
             )}
           </button>
 
-          <button 
-            className={`ps-hbtn${cartPopping ? " cart-pop" : ""}`} 
+          <button
+            className={`ps-hbtn${cartPopping ? " cart-pop" : ""}`}
             aria-label="ตะกร้าสินค้า"
             onClick={() => setIsCartOpen(true)}
           >
@@ -119,10 +122,10 @@ export function ProductShowcaseHeader({
                     zIndex: -1
                   }} />
 
-                  <div style={{ 
-                    padding: '4px 8px 12px 8px', 
-                    borderBottom: theme === 'light' ? '1px solid rgba(0,0,0,0.06)' : '1px solid rgba(255,255,255,0.1)', 
-                    marginBottom: '8px' 
+                  <div style={{
+                    padding: '4px 8px 12px 8px',
+                    borderBottom: theme === 'light' ? '1px solid rgba(0,0,0,0.06)' : '1px solid rgba(255,255,255,0.1)',
+                    marginBottom: '8px'
                   }}>
                     <div style={{ fontSize: '0.95rem', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                       {session.user.name}
@@ -190,12 +193,12 @@ export function ProductShowcaseHeader({
         </div>
       </header>
 
-      <CartDrawer 
-        isOpen={isCartOpen} 
-        onClose={() => setIsCartOpen(false)} 
+      <CartDrawer
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
         cartItems={cartItems}
         setCartItems={setCartItems}
-        theme={theme} 
+        theme={theme}
       />
 
       <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />

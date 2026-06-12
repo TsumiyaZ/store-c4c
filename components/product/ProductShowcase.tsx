@@ -8,6 +8,7 @@ import { ProductShowcaseBackground } from "./ProductShowcaseBackground";
 import { ProductShowcaseHeader } from "./ProductShowcaseHeader";
 import { ProductShowcaseImage } from "./ProductShowcaseImage";
 import { ProductShowcaseDetails } from "./ProductShowcaseDetails";
+import { useSession } from "../auth/NextAuthProvider";
 const IMAGE_BASE = "https://store.c4c2026.xyz/images/";
 
 export type CartItem = {
@@ -21,6 +22,7 @@ interface Props {
 }
 
 export default function ProductShowcase({ products }: Props) {
+  const { data: session } = useSession();
   const valid = products.filter((p) => p && p.images?.length > 0);
   const [idx, setIdx] = useState(0);
   const [imgIdx, setImgIdx] = useState(0);
@@ -28,6 +30,7 @@ export default function ProductShowcase({ products }: Props) {
   const [entering, setEntering] = useState(false);
   const [flipping, setFlipping] = useState(false);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('c4c-theme') as 'light' | 'dark';
@@ -58,14 +61,41 @@ export default function ProductShowcase({ products }: Props) {
 
   // premium interactive states
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [isCartLoaded, setIsCartLoaded] = useState(false);
   const [cartPopping, setCartPopping] = useState(false);
   const [buying, setBuying] = useState(false);
   const [buySuccess, setBuySuccess] = useState(false);
   const [selectedSize, setSelectedSize] = useState<string>(''); // Lifted size state
 
+  useEffect(() => {
+    try {
+      const savedCart = localStorage.getItem('c4c-cart');
+      if (savedCart) {
+        setCartItems(JSON.parse(savedCart));
+      }
+    } catch (error) {
+      console.log(`Error : ${error}`);
+    }
+    setIsCartLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    try {
+      if (isCartLoaded) {
+        localStorage.setItem('c4c-cart', JSON.stringify(cartItems));
+      }
+    } catch (error) {
+      console.log(`Error : ${error}`);
+    }
+  }, [cartItems, isCartLoaded]);
+
   const cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
 
   const handleBuy = () => {
+    if (!session) {
+      setIsLoginOpen(true);
+      return;
+    }
     if (buying || buySuccess) return;
     setBuying(true);
     // Simulate server processing for premium feel
@@ -82,7 +112,6 @@ export default function ProductShowcase({ products }: Props) {
           updated[existingIdx] = { ...updated[existingIdx], qty: updated[existingIdx].qty + qty };
           return updated;
         }
-        console.log(product);
         return [...prev, { product, size: selectedSize, qty }];
       });
 
@@ -192,6 +221,8 @@ export default function ProductShowcase({ products }: Props) {
           cartItems={cartItems}
           setCartItems={setCartItems}
           cartPopping={cartPopping}
+          isLoginOpen={isLoginOpen}
+          setIsLoginOpen={setIsLoginOpen}
         />
 
         <div className="ps-body">
