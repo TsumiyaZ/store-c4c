@@ -3,11 +3,15 @@
 import React, { useState } from 'react';
 import LoginModal from "../auth/LoginModal";
 import { useSession, signOut } from "../auth/NextAuthProvider";
+import CartDrawer from "./CartDrawer";
+import type { CartItem } from "./ProductShowcase";
 
 type ProductShowcaseHeaderProps = {
   theme: 'light' | 'dark';
   setTheme: React.Dispatch<React.SetStateAction<'light' | 'dark'>>;
   cartCount: number;
+  cartItems: CartItem[];
+  setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
   cartPopping: boolean;
 };
 
@@ -15,12 +19,15 @@ export function ProductShowcaseHeader({
   theme,
   setTheme,
   cartCount,
+  cartItems,
+  setCartItems,
   cartPopping,
 }: ProductShowcaseHeaderProps) {
   const { data: session } = useSession();
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isProfileMenuClosing, setIsProfileMenuClosing] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const closeProfileMenu = (callback?: () => void) => {
     setIsProfileMenuClosing(true);
@@ -60,7 +67,11 @@ export function ProductShowcaseHeader({
             )}
           </button>
 
-          <button className={`ps-hbtn${cartPopping ? " cart-pop" : ""}`} aria-label="ตะกร้าสินค้า">
+          <button 
+            className={`ps-hbtn${cartPopping ? " cart-pop" : ""}`} 
+            aria-label="ตะกร้าสินค้า"
+            onClick={() => setIsCartOpen(true)}
+          >
             <svg width="17" height="17" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
             </svg>
@@ -178,6 +189,14 @@ export function ProductShowcaseHeader({
           )}
         </div>
       </header>
+
+      <CartDrawer 
+        isOpen={isCartOpen} 
+        onClose={() => setIsCartOpen(false)} 
+        cartItems={cartItems}
+        setCartItems={setCartItems}
+        theme={theme} 
+      />
 
       <LoginModal isOpen={isLoginOpen} onClose={() => setIsLoginOpen(false)} />
     </>

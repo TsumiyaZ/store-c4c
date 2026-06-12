@@ -9,6 +9,8 @@ type ProductShowcaseDetailsProps = {
   buySuccess: boolean;
   handleBuy: () => void;
   entering: boolean;
+  selectedSize: string;
+  setSelectedSize: (size: string) => void;
 };
 
 export function ProductShowcaseDetails({
@@ -19,10 +21,11 @@ export function ProductShowcaseDetails({
   buySuccess,
   handleBuy,
   entering,
+  selectedSize,
+  setSelectedSize,
 }: ProductShowcaseDetailsProps) {
   const hasDiscount = product.original_price && product.original_price > product.price;
   const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
-  const [selectedSize, setSelectedSize] = useState<string>('8XL'); // Default size as per example
 
   return (
     <div className={`ps-right${entering ? ' text-fading' : ''}`}>
@@ -97,7 +100,7 @@ export function ProductShowcaseDetails({
           className="ps-size-btn"
           onClick={() => setIsSizeGuideOpen(true)}
         >
-          <span>Size {selectedSize}</span>
+          <span>{selectedSize ? `Size ${selectedSize}` : 'เลือกไซส์'}</span>
           <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ opacity: 0.9 }}>
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
           </svg>
@@ -107,7 +110,13 @@ export function ProductShowcaseDetails({
         <button
           className={`ps-buy${buying ? ' loading' : ''}${buySuccess ? ' success' : ''}`}
           id="buy-now"
-          onClick={handleBuy}
+          onClick={() => {
+            if (!selectedSize) {
+              setIsSizeGuideOpen(true);
+            } else {
+              handleBuy();
+            }
+          }}
           disabled={buying || buySuccess}
         >
           {buying ? (

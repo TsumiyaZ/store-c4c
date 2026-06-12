@@ -10,6 +10,12 @@ import { ProductShowcaseImage } from "./ProductShowcaseImage";
 import { ProductShowcaseDetails } from "./ProductShowcaseDetails";
 const IMAGE_BASE = "https://store.c4c2026.xyz/images/";
 
+export type CartItem = {
+  product: Datum;
+  size: string;
+  qty: number;
+};
+
 interface Props {
   products: Datum[];
 }
@@ -51,10 +57,13 @@ export default function ProductShowcase({ products }: Props) {
   };
 
   // premium interactive states
-  const [cartCount, setCartCount] = useState(0);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [cartPopping, setCartPopping] = useState(false);
   const [buying, setBuying] = useState(false);
   const [buySuccess, setBuySuccess] = useState(false);
+  const [selectedSize, setSelectedSize] = useState<string>(''); // Lifted size state
+
+  const cartCount = cartItems.reduce((sum, item) => sum + item.qty, 0);
 
   const handleBuy = () => {
     if (buying || buySuccess) return;
@@ -63,7 +72,19 @@ export default function ProductShowcase({ products }: Props) {
     setTimeout(() => {
       setBuying(false);
       setBuySuccess(true);
-      setCartCount((prev) => prev + qty);
+
+      setCartItems(prev => {
+        const existingIdx = prev.findIndex(
+          item => item.product.id === product.id && item.size === selectedSize
+        );
+        if (existingIdx >= 0) {
+          const updated = [...prev];
+          updated[existingIdx] = { ...updated[existingIdx], qty: updated[existingIdx].qty + qty };
+          return updated;
+        }
+        return [...prev, { product, size: selectedSize, qty }];
+      });
+
       setCartPopping(true);
 
       // Reset success status
@@ -167,6 +188,8 @@ export default function ProductShowcase({ products }: Props) {
           theme={theme}
           setTheme={handleThemeChange}
           cartCount={cartCount}
+          cartItems={cartItems}
+          setCartItems={setCartItems}
           cartPopping={cartPopping}
         />
 
@@ -195,6 +218,8 @@ export default function ProductShowcase({ products }: Props) {
               buySuccess={buySuccess}
               handleBuy={handleBuy}
               entering={entering}
+              selectedSize={selectedSize}
+              setSelectedSize={setSelectedSize}
             />
           </div>
         </div>
