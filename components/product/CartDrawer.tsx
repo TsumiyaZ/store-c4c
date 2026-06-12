@@ -115,6 +115,9 @@ export default function CartDrawer({ isOpen, onClose, cartItems, setCartItems, t
           background: isLight ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.2)',
         }}>
           <h2 style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
             fontSize: '1.4rem',
             fontWeight: 800,
             margin: 0,
@@ -122,7 +125,19 @@ export default function CartDrawer({ isOpen, onClose, cartItems, setCartItems, t
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             letterSpacing: '-0.02em'
-          }}>ตะกร้าสินค้า</h2>
+          }}>
+            <svg width="24" height="24" fill="none" stroke="url(#cart-modal-grad)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+              <defs>
+                <linearGradient id="cart-modal-grad" x1="0" y1="0" x2="24" y2="24">
+                  <stop stopColor="#ec4899"/><stop offset="1" stopColor="#8b5cf6"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            ตะกร้าสินค้า
+          </h2>
           <button
             onClick={onClose}
             style={{
@@ -395,7 +410,12 @@ export default function CartDrawer({ isOpen, onClose, cartItems, setCartItems, t
               }}
               onClick={() => alert('ดำเนินการสั่งซื้อ...')}
             >
-              ดำเนินการสั่งซื้อ
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                  <path d="M20 6L9 17l-5-5"></path>
+                </svg>
+                ดำเนินการสั่งซื้อ
+              </div>
             </button>
           </div>
         )}

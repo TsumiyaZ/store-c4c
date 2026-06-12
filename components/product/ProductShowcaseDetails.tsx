@@ -71,12 +71,12 @@ export function ProductShowcaseDetails({
 
       {/* price */}
       <div className="ps-price-block">
-        {hasDiscount && <p className="ps-price-old">฿{product.original_price!.toLocaleString()}</p>}
+        {hasDiscount && <p className="ps-price-old">฿{product.original_price!.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>}
         <div className="ps-price-row">
-          <span className="ps-price">฿{product.price.toLocaleString()}</span>
+          <span className="ps-price">฿{product.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
           {hasDiscount && (
             <span className="ps-save">
-              ประหยัด ฿{product.original_price! - product.price}
+              ประหยัด ฿{(product.original_price! - product.price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
             </span>
           )}
         </div>
