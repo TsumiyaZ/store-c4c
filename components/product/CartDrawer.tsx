@@ -119,7 +119,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems, setCartItems, t
             alignItems: 'center',
             gap: '8px',
             fontSize: '1.4rem',
-            fontWeight: 800,
+            fontWeight: 600,
             margin: 0,
             background: 'linear-gradient(90deg, #ec4899, #8b5cf6)',
             WebkitBackgroundClip: 'text',
@@ -132,7 +132,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems, setCartItems, t
               <path d="M16 10a4 4 0 0 1-8 0"></path>
               <defs>
                 <linearGradient id="cart-modal-grad" x1="0" y1="0" x2="24" y2="24">
-                  <stop stopColor="#ec4899"/><stop offset="1" stopColor="#8b5cf6"/>
+                  <stop stopColor="#ec4899" /><stop offset="1" stopColor="#8b5cf6" />
                 </linearGradient>
               </defs>
             </svg>
@@ -252,7 +252,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems, setCartItems, t
                     {/* Title row */}
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px', marginBottom: '6px' }}>
                       <h4 style={{
-                        fontWeight: 800, fontSize: '0.95rem', margin: 0, letterSpacing: '-0.01em',
+                        fontWeight: 600, fontSize: '0.95rem', margin: 0, letterSpacing: '-0.01em',
                         color: isLight ? '#1f2937' : '#f3f4f6',
                         whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
                         flex: 1
@@ -314,7 +314,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems, setCartItems, t
                         </button>
 
                         <span style={{
-                          fontSize: '1rem', fontWeight: 800,
+                          fontSize: '1rem', fontWeight: 600,
                           minWidth: '20px', textAlign: 'center',
                           color: isLight ? '#1f2937' : '#f9fafb'
                         }}>{item.qty}</span>
@@ -348,7 +348,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems, setCartItems, t
                     {/* Price */}
                     <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
                       <p style={{
-                        fontWeight: 900, fontSize: '1.05rem', margin: 0,
+                        fontWeight: 800, fontSize: '1.05rem', margin: 0,
                         background: isLight ? 'linear-gradient(90deg, #ec4899, #8b5cf6)' : 'linear-gradient(90deg, #f472b6, #a78bfa)',
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
@@ -382,7 +382,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems, setCartItems, t
           }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '20px' }}>
               <span style={{ fontWeight: 600, fontSize: '1rem', color: isLight ? '#6b7280' : '#9ca3af' }}>ยอดรวมทั้งหมด ({totalCount} ชิ้น)</span>
-              <span style={{ fontWeight: 900, fontSize: '1.5rem', color: isLight ? '#ec4899' : '#f472b6', lineHeight: 1 }}>
+              <span style={{ fontWeight: 700, fontSize: '1.5rem', color: isLight ? '#ec4899' : '#f472b6', lineHeight: 1 }}>
                 ฿{totalPrice.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </span>
             </div>
@@ -394,7 +394,7 @@ export default function CartDrawer({ isOpen, onClose, cartItems, setCartItems, t
                 color: 'white',
                 border: 'none',
                 borderRadius: '16px',
-                fontWeight: 800,
+                fontWeight: 600,
                 fontSize: '1.1rem',
                 cursor: 'pointer',
                 boxShadow: '0 8px 24px rgba(236, 72, 153, 0.4)',

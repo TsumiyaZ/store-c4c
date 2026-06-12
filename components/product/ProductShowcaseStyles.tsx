@@ -8,7 +8,7 @@ export function ProductShowcaseStyles() {
       a { -webkit-tap-highlight-color: transparent; }
 
       .ps-root {
-        font-family: 'Inter', sans-serif;
+        font-family: var(--font-prompt), 'Inter', sans-serif;
         width: 100%;
         max-width: 100vw;
         min-height: 100dvh; height: 100dvh;
@@ -37,8 +37,9 @@ export function ProductShowcaseStyles() {
         position: absolute;
         top: 50%; left: 50%;
         transform: translate(-50%, -50%);
+        font-family: 'Inter', sans-serif;
         font-size: clamp(60rem, 80vw, 110rem);
-        font-weight: 900;
+        font-weight: 700;
         color: rgba(131, 24, 67, 0.06);
         mix-blend-mode: multiply;
         z-index: 0;
@@ -91,7 +92,7 @@ export function ProductShowcaseStyles() {
         animation: ps-mount 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
       .ps-logo {
-        font-size: 2rem; font-weight: 900;
+        font-size: 2rem; font-weight: 700;
         letter-spacing: 0.15em; text-transform: uppercase;
         color: #3a2d3c; text-decoration: none;
         transition: opacity .2s;
@@ -112,7 +113,7 @@ export function ProductShowcaseStyles() {
         position: absolute; top: -3px; right: -3px;
         width: 16px; height: 16px; border-radius: 50%;
         background: #ef4444; color: #fff;
-        font-size: 9px; font-weight: 900;
+        font-size: 9px; font-weight: 700;
         display: flex; align-items: center; justify-content: center;
       }
 
@@ -363,7 +364,7 @@ export function ProductShowcaseStyles() {
       /* big editorial title */
       .ps-title {
         font-size: clamp(1.8rem, 3.2vw, 3rem);
-        font-weight: 900;
+        font-weight: 700;
         line-height: 1.05;
         letter-spacing: -0.03em;
         margin-bottom: 0.75rem;
@@ -372,7 +373,7 @@ export function ProductShowcaseStyles() {
       .ps-desc {
         font-size: 0.82rem; line-height: 1.75;
         color: rgba(0,0,0,0.6);
-        max-width: 340px;
+        max-width: 400px;
         margin-bottom: 1.75rem;
       }
 
@@ -393,11 +394,11 @@ export function ProductShowcaseStyles() {
       .ps-price-row { display: flex; align-items: flex-end; gap: 12px; }
       .ps-price {
         font-size: clamp(2.4rem, 4vw, 3.4rem);
-        font-weight: 900; letter-spacing: -0.04em; line-height: 1;
+        font-weight: 700; letter-spacing: -0.04em; line-height: 1;
         color: #3a2d3c;
       }
       .ps-save {
-        font-size: 0.65rem; font-weight: 800;
+        font-size: 0.65rem; font-weight: 600;
         letter-spacing: 0.1em; text-transform: uppercase;
         color: #be123c;
         background: rgba(190,18,60,0.12);
@@ -408,7 +409,7 @@ export function ProductShowcaseStyles() {
       }
 
       /* ─── ACTIONS ─── */
-      .ps-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+      .ps-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
       .ps-qty {
         display: flex; align-items: center;
         background: rgba(255, 255, 255, 0.45);
@@ -428,18 +429,22 @@ export function ProductShowcaseStyles() {
       .ps-qbtn:disabled { color: rgba(131, 24, 67, 0.3); cursor: not-allowed; }
       .ps-qnum {
         min-width: 36px; text-align: center;
-        font-size: 0.95rem; font-weight: 800; color: #831843;
+        font-size: 0.95rem; font-weight: 600; color: #831843;
         user-select: none;
       }
       .ps-size-btn {
-        display: inline-flex; height: 44px; min-width: 110px; flex-shrink: 0;
-        align-items: center; justify-content: space-between; padding: 0 16px;
+        display: inline-flex; height: 44px; min-width: 140px; flex-shrink: 0;
+        align-items: center; justify-content: center; padding: 0 16px;
+        position: relative;
         border-radius: 999px;
         background: rgba(255, 255, 255, 0.45); border: 1px solid rgba(255, 255, 255, 0.6);
-        color: #831843; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.02em;
+        color: #831843; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.02em;
         cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         box-shadow: 0 4px 12px rgba(0,0,0,0.03), inset 0 1px 1px rgba(255,255,255,0.8);
         backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      }
+      .ps-size-btn svg {
+        position: absolute; right: 16px;
       }
       .ps-size-btn:hover {
         background: rgba(255, 255, 255, 0.65);
@@ -447,23 +452,84 @@ export function ProductShowcaseStyles() {
         box-shadow: 0 6px 16px rgba(0,0,0,0.05), inset 0 1px 1px rgba(255,255,255,1);
         color: #be123c;
       }
-      .ps-buy {
-        flex: 1; min-width: 140px;
-        height: 44px;
-        background: linear-gradient(135deg, #c895a7 0%, #a47fa9 100%);
-        color: #fff;
-        border: 1px solid #916c96;
+
+      /* ─── FLOATING ACTION BAR (PREMIUM DESIGN - LIGHT/DARK) ─── */
+      .ps-floating-action-bar {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(255, 255, 255, 0.75);
         border-radius: 999px;
-        font-size: 0.85rem; font-weight: 800;
-        letter-spacing: 0.04em; cursor: pointer;
-        display: flex; align-items: center; justify-content: center; gap: 8px;
-        box-shadow: 0 8px 24px rgba(164, 127, 169, 0.3);
+        display: flex;
+        align-items: center;
+        padding: 8px 8px 8px 24px;
+        gap: 16px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15), inset 0 1px 1px rgba(255,255,255,1), 0 0 0 1px rgba(0,0,0,0.05);
+        z-index: 50;
+        width: 90%;
+        max-width: 420px;
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        animation: ps-fab-slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        transition: background 0.3s, box-shadow 0.3s;
+      }
+      @keyframes ps-fab-slide-up {
+        from { transform: translate(-50%, 150%); opacity: 0; }
+        to { transform: translate(-50%, 0); opacity: 1; }
+      }
+      .ps-fab-price {
+        font-size: 1.25rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #be123c, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+      }
+      .ps-fab-divider {
+        width: 1.5px;
+        height: 28px;
+        background: rgba(0,0,0,0.1);
+        border-radius: 2px;
+      }
+      .ps-fab-size {
+        background: none;
+        border: none;
+        color: #4b5563;
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        padding: 0;
+        white-space: nowrap;
+        flex: 1;
+        text-align: left;
+        transition: color 0.2s;
+      }
+      .ps-fab-size:hover {
+        color: #ec4899;
+      }
+      .ps-fab-buy {
+        background: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+        color: #fff;
+        border: none;
+        border-radius: 999px;
+        height: 52px;
+        padding: 0 32px;
+        font-size: 1.05rem;
+        font-weight: 550;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s, background 0.3s;
+        box-shadow: 0 8px 24px rgba(236, 72, 153, 0.4);
+        white-space: nowrap;
         position: relative;
         overflow: hidden;
-        transition: transform .15s, box-shadow .15s;
-        touch-action: manipulation;
       }
-      .ps-buy::before {
+      .ps-fab-buy::before {
         content: '';
         position: absolute;
         top: 0; left: 0;
@@ -474,17 +540,47 @@ export function ProductShowcaseStyles() {
         animation: ps-shine 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
         will-change: transform;
       }
-      @keyframes ps-shine {
-        0%, 75% { transform: skewX(-25deg) translateX(-300%); }
-        100% { transform: skewX(-25deg) translateX(300%); }
+      .ps-fab-buy:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 32px rgba(236, 72, 153, 0.6);
       }
-      .ps-buy:hover::before {
-        animation: none;
-        transform: skewX(-25deg) translateX(300%);
-        transition: transform 0.6s ease;
+      .ps-fab-buy:active {
+        transform: scale(0.95);
       }
-      .ps-buy:hover { transform: scale(1.03); box-shadow: 0 12px 36px rgba(0,0,0,0.32); }
-      .ps-buy:active { transform: scale(0.98); }
+      .ps-fab-buy:disabled {
+        background: #e5e7eb;
+        color: #9ca3af;
+        box-shadow: none;
+        cursor: not-allowed;
+        transform: none;
+      }
+      .ps-fab-buy:disabled::before {
+        display: none;
+      }
+
+      /* Dark Mode Overrides for FAB */
+      .dark .ps-floating-action-bar {
+        background: rgba(17, 24, 39, 0.75);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 1px 1px rgba(255,255,255,0.15), 0 0 0 1px rgba(255,255,255,0.05);
+      }
+      .dark .ps-fab-price {
+        background: linear-gradient(135deg, #fbcfe8, #f472b6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .dark .ps-fab-divider {
+        background: rgba(255,255,255,0.15);
+      }
+      .dark .ps-fab-size {
+        color: #d1d5db;
+      }
+      .dark .ps-fab-size:hover {
+        color: #f472b6;
+      }
+      .dark .ps-fab-buy:disabled {
+        background: rgba(255,255,255,0.1);
+        color: rgba(255,255,255,0.4);
+      }
 
       /* info badge row */
       .ps-badges {
@@ -640,11 +736,11 @@ export function ProductShowcaseStyles() {
         .ps-qty {
           justify-content: space-between;
           width: 100%;
-          max-width: 320px;
+          max-width: 240px;
         }
         .ps-size-btn {
           width: 100%;
-          max-width: 320px;
+          max-width: 240px;
         }
         .ps-buy {
           width: 100%;
@@ -680,7 +776,7 @@ export function ProductShowcaseStyles() {
         white-space: nowrap;
       }
       .ps-footer-total strong {
-        color: #111827; font-size: 1rem; font-weight: 800; letter-spacing: -0.02em;
+        color: #111827; font-size: 1rem; font-weight: 600; letter-spacing: -0.02em;
       }
 
       /* ─── STAGGERED ENTRANCE TRANSITION FOR DETAILS ─── */

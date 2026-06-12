@@ -1,16 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Prompt } from "next/font/google";
 import "./globals.css";
 import { NextAuthProvider } from "@/components/auth/NextAuthProvider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const prompt = Prompt({
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  subsets: ["latin", "thai"],
+  variable: "--font-prompt",
 });
 
 export const metadata: Metadata = {
@@ -29,18 +25,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="th"
-      className={`${geistSans.variable} ${geistMono.variable}`}
-    >
+    <html lang="th" className={`${prompt.variable}`}>
       <body
+        className={prompt.className}
         style={{
           margin: 0,
           padding: 0,
           minHeight: "100vh",
           background: "transparent",
           color: "#ffffff",
-          fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
           WebkitFontSmoothing: "antialiased",
         }}
       >

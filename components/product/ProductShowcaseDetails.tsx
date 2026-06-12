@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { SizeGuideModal } from './SizeGuideModal';
 
 type ProductShowcaseDetailsProps = {
@@ -26,6 +27,11 @@ export function ProductShowcaseDetails({
 }: ProductShowcaseDetailsProps) {
   const hasDiscount = product.original_price && product.original_price > product.price;
   const [isSizeGuideOpen, setIsSizeGuideOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <div className={`ps-right${entering ? ' text-fading' : ''}`}>
@@ -117,71 +123,64 @@ export function ProductShowcaseDetails({
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
           </svg>
         </button>
-
-        {/* buy button with loaders/success states */}
-        <button
-          className={`ps-buy${buying ? ' loading' : ''}${buySuccess ? ' success' : ''}`}
-          id="buy-now"
-          onClick={() => {
-            if (!selectedSize) {
-              setIsSizeGuideOpen(true);
-            } else {
-              handleBuy();
-            }
-          }}
-          disabled={buying || buySuccess}
-        >
-          {buying ? (
-            <>
-              <svg
-                className="ps-spinner"
-                width="16"
-                height="16"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="3.5"
-                  strokeDasharray="30"
-                  strokeLinecap="round"
-                  opacity="0.25"
-                />
-                <path
-                  d="M12 2C6.47715 2 2 6.47715 2 12C2 13.5936 2.3725 15.097 3.03352 16.4269"
-                  stroke="currentColor"
-                  strokeWidth="3.5"
-                  strokeLinecap="round"
-                />
-              </svg>
-              กำลังดำเนินการ...
-            </>
-          ) : buySuccess ? (
-            <>
-              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-              </svg>
-              เพิ่มสำเร็จ!
-            </>
-          ) : (
-            <>
-              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2.2}
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                />
-              </svg>
-              เพิ่มสินค้า
-            </>
-          )}
-        </button>
       </div>
+
+      {/* Floating Action Bar (Sticky at bottom, Portaled to body to avoid transform constraints) */}
+      {mounted && createPortal(
+        <div className="ps-floating-action-bar">
+          {/* Price */}
+          <div className="ps-fab-price">
+            ฿{product.price.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+          </div>
+
+          {/* Divider */}
+          <div className="ps-fab-divider" />
+
+          {/* Size Selector */}
+          <button className="ps-fab-size" onClick={() => setIsSizeGuideOpen(true)}>
+            {selectedSize ? `Size ${selectedSize}` : 'เลือกไซส์'}
+          </button>
+
+          {/* Buy Button */}
+          <button
+            className="ps-fab-buy"
+            id="buy-now-fab"
+            onClick={() => {
+              if (!selectedSize) {
+                setIsSizeGuideOpen(true);
+              } else {
+                handleBuy();
+              }
+            }}
+            disabled={buying || buySuccess}
+          >
+            {buying ? (
+              <>
+                <svg className="ps-spinner" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" strokeWidth="3" strokeDasharray="30" strokeLinecap="round" opacity="0.25" />
+                  <path d="M12 2C6.47715 2 2 6.47715 2 12C2 13.5936 2.3725 15.097 3.03352 16.4269" strokeWidth="3" strokeLinecap="round" />
+                </svg>
+                ...
+              </>
+            ) : buySuccess ? (
+              <>
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                สำเร็จ
+              </>
+            ) : (
+              <>
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                เพิ่มสินค้า
+              </>
+            )}
+          </button>
+        </div>,
+        document.body
+      )}
     </div>
   );
 }
