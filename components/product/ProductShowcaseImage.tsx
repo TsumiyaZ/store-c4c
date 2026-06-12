@@ -61,8 +61,8 @@ export function ProductShowcaseImage({
 
       {/* hero image container */}
       <div className="ps-img-container">
-        <div className="ps-fake-shadow" />
         <div className={`ps-img-wrap${entering ? ' fading' : ''}${flipping ? ' flipping' : ''}`}>
+          <div className="ps-fake-shadow" />
           {imgSrc && (
             <Image
               key={imgSrc}

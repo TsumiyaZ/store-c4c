@@ -181,14 +181,15 @@ export function ProductShowcaseStyles() {
         max-height: 440px;
         aspect-ratio: 1 / 1;
         z-index: 2;
-        pointer-events: none;
         transition: opacity 0.5s cubic-bezier(0.32, 0.72, 0, 1), transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
         animation: ps-float 6s ease-in-out infinite;
         will-change: transform;
       }
       .ps-fake-shadow {
         position: absolute;
-        bottom: 5%;
+        bottom: -12%;
+        left: 50%;
+        transform: translateX(-50%);
         width: 60%;
         height: 25px;
         background: radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, transparent 70%);
@@ -214,8 +215,8 @@ export function ProductShowcaseStyles() {
       .ps-img-wrap img {
         transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
       }
-      .ps-img-container:hover .ps-img-wrap img {
-        transform: scale(1.05) rotate(-2deg);
+      .ps-img-wrap:hover img {
+        transform: scale(1.1);
       }
       .ps-flip-btn {
         position: absolute;
@@ -248,8 +249,8 @@ export function ProductShowcaseStyles() {
         50% { transform: translateY(-8px); }
       }
       @keyframes ps-shadow-float {
-        0%, 100% { transform: scale(1); opacity: 1; }
-        50% { transform: scale(0.85); opacity: 0.5; }
+        0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; }
+        50% { transform: translateX(-50%) scale(0.85); opacity: 0.5; }
       }
 
       /* bottom bar container */

@@ -52,7 +52,24 @@ export function ProductShowcaseHeader({
   return (
     <>
       <header className="ps-header">
-        <a href="/" className="ps-logo">C4C 2026</a>
+        <a href="/" className="ps-logo" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
+            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="url(#c4c-grad-logo)" fillOpacity="0.15" stroke="url(#c4c-grad-logo)" strokeWidth="2"/>
+            <path d="M8 14.5C8 14.5 9.5 16 12 16C14.5 16 16 14.5 16 14.5M15.5 9.5C15.5 10.3284 14.8284 11 14 11C13.1716 11 12.5 10.3284 12.5 9.5C12.5 8.67157 13.1716 8 14 8C14.8284 8 15.5 8.67157 15.5 9.5ZM10 9.5C10 10.3284 9.32843 11 8.5 11C7.67157 11 7 10.3284 7 9.5C7 8.67157 7.67157 8 8.5 8C9.32843 8 10 8.67157 10 9.5Z" stroke="url(#c4c-grad-logo)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <defs>
+              <linearGradient id="c4c-grad-logo" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#ec4899" />
+                <stop offset="1" stopColor="#8b5cf6" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <span style={{ 
+            background: 'linear-gradient(90deg, #ec4899, #8b5cf6)', 
+            WebkitBackgroundClip: 'text', 
+            WebkitTextFillColor: 'transparent',
+            fontWeight: 900
+          }}>C4C</span> <span style={{ fontSize: '1.4rem' }}>2026</span>
+        </a>
         <div className="ps-header-right">
           <button
             className="ps-hbtn"

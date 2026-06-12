@@ -294,9 +294,26 @@ export function SizeGuideModal({ isOpen, onClose, selectedSize, setSelectedSize 
           <div className="sg-fabric-box">
             <h3 className="sg-section-title">รายละเอียดเนื้อผ้า</h3>
             <div className="sg-fabric-tags">
-              {['✨ ตารางเงา', '🌟 ผิวสัมผัสมีความเงา', '🍃 เนื้อผ้าเบา สบาย', '🚫 ไม่แนบเนื้อ', '💨 ระบายอากาศยอดเยี่ยม'].map(tag => (
-                <span key={tag} className="sg-fabric-tag">{tag}</span>
-              ))}
+              <span className="sg-fabric-tag" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#fbbf24' }}><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                ตารางเงา
+              </span>
+              <span className="sg-fabric-tag" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#f59e0b' }}><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path><path d="M5 3v4"></path><path d="M19 17v4"></path><path d="M3 5h4"></path><path d="M17 19h4"></path></svg>
+                ผิวสัมผัสมีความเงา
+              </span>
+              <span className="sg-fabric-tag" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#10b981' }}><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg>
+                เนื้อผ้าเบา สบาย
+              </span>
+              <span className="sg-fabric-tag" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#ef4444' }}><circle cx="12" cy="12" r="10"></circle><path d="m4.9 4.9 14.2 14.2"></path></svg>
+                ไม่แนบเนื้อ
+              </span>
+              <span className="sg-fabric-tag" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#a855f7' }}><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"></path><path d="M9.6 4.6A2 2 0 1 1 11 8H2"></path><path d="M12.6 19.4A2 2 0 1 0 14 16H2"></path></svg>
+                ระบายอากาศยอดเยี่ยม
+              </span>
             </div>
           </div>
 

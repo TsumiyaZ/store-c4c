@@ -44,15 +44,27 @@ export function ProductShowcaseDetails({
 
       {/* badges */}
       <div className="ps-badges">
-        <span className="ps-badge-pill" data-tooltip="ตัดเย็บประณีต ทรงสวยสไตล์สปอร์ต">
+        <span className="ps-badge-pill" data-tooltip="ตัดเย็บประณีต ทรงสวยสไตล์สปอร์ต" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#ec4899' }}>
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <path d="m9 12 2 2 4-4"></path>
+          </svg>
           เสื้อโปโลคุณภาพสูง
         </span>
-        <span className="ps-badge-pill" data-tooltip="ผ้านุ่ม เบาสบาย ระบายอากาศดีเยี่ยม">
+        <span className="ps-badge-pill" data-tooltip="ผ้านุ่ม เบาสบาย ระบายอากาศดีเยี่ยม" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#8b5cf6' }}>
+            <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"></path>
+            <line x1="16" y1="8" x2="2" y2="22"></line>
+            <line x1="17.5" y1="15" x2="9" y2="6.5"></line>
+          </svg>
           ผ้า Polyester
         </span>
         {hasDiscount && (
-          <span className="ps-badge-pill" data-tooltip="ราคาสุดพิเศษประหยัดสูงสุด">
-            🔥 Best Value
+          <span className="ps-badge-pill" data-tooltip="ราคาสุดพิเศษประหยัดสูงสุด" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: '#f97316' }}>
+              <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+            </svg>
+            Best Value
           </span>
         )}
       </div>
