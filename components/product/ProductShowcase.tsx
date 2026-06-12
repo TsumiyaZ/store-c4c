@@ -82,6 +82,7 @@ export default function ProductShowcase({ products }: Props) {
           updated[existingIdx] = { ...updated[existingIdx], qty: updated[existingIdx].qty + qty };
           return updated;
         }
+        console.log(product);
         return [...prev, { product, size: selectedSize, qty }];
       });
 
